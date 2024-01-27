@@ -2,6 +2,7 @@
 import Form from "./components/Form.vue";
 import AdsTest from "./components/AdsTest.vue";
 import CityName from "./components/CityName.vue";
+import TwoFA from "./components/TwoFA.vue";
 </script>
 
 <template>
@@ -12,6 +13,8 @@ import CityName from "./components/CityName.vue";
     <AdsTest />
     <h4>城市英文名称检索</h4>
     <CityName />
+    <h4>2FA</h4>
+    <TwoFA />
   </main>
 </template>
 

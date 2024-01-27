@@ -1,6 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import trim from "./directives/trim.js";
 
-import './assets/main.css'
+import "./assets/main.css";
+import "element-plus/theme-chalk/el-notification.css";
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.directive("trim", trim);
+app.mount("#app");
