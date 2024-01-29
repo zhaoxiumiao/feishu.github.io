@@ -1,4 +1,4 @@
-import jsSHA from "./jssha";
+import jsSHA from "jssha";
 var dec2hex = function (s) {
   return (s < 15.5 ? "0" : "") + Math.round(s).toString(16);
 };
@@ -42,11 +42,16 @@ var generate = function (secret, epoch) {
     epoch = Math.round(new Date().getTime() / 1000.0);
   }
   var time = leftpad(dec2hex(Math.floor(epoch / 30)), 16, "0");
-  // const hmacObj = new jsSHA("SHA-1", "TEXT", {
-  //   hmacKey: { value: time, format: "HEX" },
-  // });
-  var hmacObj = new jsSHA(time, "HEX");
-  var hmac = hmacObj.getHMAC(key, "HEX", "SHA-1", "HEX");
+
+  // jssha 新版本
+  var shaObj = new jsSHA("SHA-1", "HEX");
+  shaObj.setHMACKey(key, "HEX");
+  shaObj.update(time);
+  var hmac = shaObj.getHMAC("HEX");
+
+  // jssha 老版本
+  // var hmacObj = new jsSHA(time, "HEX");
+  // var hmac = hmacObj.getHMAC(key, "HEX", "SHA-1", "HEX");
 
   var offset = 0;
   if (hmac !== "KEY MUST BE IN BYTE INCREMENTS") {
