@@ -771,9 +771,4 @@ p {
   display: block;
   margin-left: 0;
 }
-
-h4 {
-  font-size: calc(1.275rem + 0.3vw);
-  margin-bottom: 1rem;
-}
 </style>

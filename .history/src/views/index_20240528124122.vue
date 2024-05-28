@@ -3,9 +3,9 @@ import Form from "@/components/Form.vue";
 import AdsTest from "@/components/AdsTest.vue";
 import CityName from "@/components/CityName.vue";
 import TwoFA from "@/components/TwoFA.vue";
+import InsertFans from "@/components/InsertFans.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
-console.log(router);
 const tolink = () => {
   const routeUrl = router.resolve({ name: "search" });
   window.open(routeUrl.href, "_blank");
@@ -24,8 +24,10 @@ const tolink = () => {
     <TwoFA />
     <h4>Facebook 兴趣词工具</h4>
     <el-button type="primary" plain size="large" @click="tolink"
-      >生成测试链接</el-button
+      >前往工具页面</el-button
     >
+    <h4>粉丝页数据表批量插入</h4>
+    <InsertFans />
   </main>
 </template>
 

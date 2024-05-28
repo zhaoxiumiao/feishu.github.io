@@ -2,7 +2,6 @@
 import { bitable, FieldType } from "@lark-base-open/js-sdk";
 import { ref, onMounted } from "vue";
 import { ElButton, ElForm, ElFormItem, ElSelect, ElOption } from "element-plus";
-import { Parser } from "htmlparser2";
 
 const getTableByName = async (name) => {
   const table = await bitable.base.getTableByName(name);
@@ -613,63 +612,8 @@ export default {
       }
     };
 
-    const sub = () => {
-      let content = "";
-      function extractClassList(html) {
-        const classList = [];
-        let tmp = {
-          // name: '',
-          // id: ''
-        };
-        const parser = new Parser({
-          onopentag(name, attributes) {
-            if (name === "a" && attributes) {
-              tmp.id = attributes.href.split("/")[3];
-            }
-          },
-          ontext(text) {
-            if (!text.includes("编号：")) {
-              tmp.name = text;
-              classList.push(tmp);
-              tmp = {};
-            }
-          },
-          onclosetag(tagname) {},
-        });
-        parser.write(html);
-        parser.end();
-        return classList;
-      }
-      const ids = extractClassList(html.value);
-      data.value = ids;
-      console.log(ids, "ids");
-    };
-    const insert = async () => {
-      const name = await getSelectionName();
-      if (name === "粉丝页的数据" && data.value) {
-        const mainTable = await getTableByName(name);
-        const fieldMetaList = [
-          "fldKyTNThM", // 名称
-          "fldqyffZcM", // ID
-          "fldGDgtbfT", // 主页链接
-        ];
-        const insertList = data.value.map((item) => {
-          return {
-            fields: {
-              [fieldMetaList[0]]: [{ type: "text", text: item.name }],
-              [fieldMetaList[1]]: [{ type: "text", text: `${item.id}` }],
-              [fieldMetaList[2]]: [
-                {
-                  type: "text",
-                  text: `https://www.facebook.com/profile.php?id=${item.id}`,
-                },
-              ],
-            },
-          };
-        });
-        await mainTable.addRecords(insertList);
-      }
-    };
+    const sub = () => {};
+    const insert = () => {};
     onMounted(async () => {
       const packList = await getFieldValueList(
         tableFieldNames.pack.tableName,
@@ -719,7 +663,6 @@ export default {
     <el-button type="primary" plain size="large" @click="total"
       >广告账户统计</el-button
     >
-    <h4>粉丝页数据表批量插入</h4>
     <div class="TwoFA">
       <el-input
         v-trim
@@ -738,7 +681,7 @@ export default {
         type="textarea"
         placeholder="Please input"
       />
-      <el-button @click="insert" type="primary" plain size="large"
+      <el-button @click="copy" type="primary" plain size="large"
         >插入</el-button
       >
     </div>
@@ -770,10 +713,5 @@ p {
   margin-bottom: 1rem;
   display: block;
   margin-left: 0;
-}
-
-h4 {
-  font-size: calc(1.275rem + 0.3vw);
-  margin-bottom: 1rem;
 }
 </style>

@@ -658,12 +658,6 @@ export default {
             fields: {
               [fieldMetaList[0]]: [{ type: "text", text: item.name }],
               [fieldMetaList[1]]: [{ type: "text", text: `${item.id}` }],
-              [fieldMetaList[2]]: [
-                {
-                  type: "text",
-                  text: `https://www.facebook.com/profile.php?id=${item.id}`,
-                },
-              ],
             },
           };
         });
@@ -719,7 +713,6 @@ export default {
     <el-button type="primary" plain size="large" @click="total"
       >广告账户统计</el-button
     >
-    <h4>粉丝页数据表批量插入</h4>
     <div class="TwoFA">
       <el-input
         v-trim
@@ -770,10 +763,5 @@ p {
   margin-bottom: 1rem;
   display: block;
   margin-left: 0;
-}
-
-h4 {
-  font-size: calc(1.275rem + 0.3vw);
-  margin-bottom: 1rem;
 }
 </style>
