@@ -15,10 +15,5 @@ const routes: RouteRecordRaw[] = [
     name: "lark",
     component: () => import("@/views/lark.vue"), //.vue不能省略
   },
-  {
-    path: "/insert",
-    name: "insert",
-    component: () => import("@/views/insert.vue"), //.vue不能省略
-  },
 ];
 export default routes;
