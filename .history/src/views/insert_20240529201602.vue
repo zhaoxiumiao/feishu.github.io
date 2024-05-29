@@ -150,9 +150,13 @@ export default {
         };
         const parser = new Parser({
           onopentag(name, attributes) {
-            if (name === "a") {
-              tmp.id = attributes.href.split("/")[3];
-              tmp.link = `https://www.facebook.com/profile.php?id=${tmp.id}`;
+            if (
+              name === "a" &&
+              attributes.class ===
+                "x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz x1heor9g x1sur9pj xkrqix3"
+            ) {
+              tmp.id = attributes.href.split("=")[1];
+              tmp.link = attributes.href;
               start = 1;
             }
           },
@@ -174,46 +178,6 @@ export default {
       data.value = ids;
       console.log(ids, "ids");
     };
-    // const sub = () => {
-    //   let content = "";
-    //   function extractClassList(html) {
-    //     const classList = [];
-    //     let start = 0;
-    //     let tmp = {
-    //       // name: '',
-    //       // id: ''
-    //       // link: ''
-    //     };
-    //     const parser = new Parser({
-    //       onopentag(name, attributes) {
-    //         if (
-    //           name === "a" &&
-    //           attributes.class ===
-    //             "x1i10hfl xjbqb8w x1ejq31n xd10rxx x1sy0etr x17r0tee x972fbf xcfux6l x1qhh985 xm0m39n x9f619 x1ypdohk xt0psk2 xe8uvvx xdj266r x11i5rnm xat24cr x1mh8g0r xexx8yu x4uap5 x18d9i69 xkhd6sd x16tdsg8 x1hl2dhg xggy1nq x1a2a7pz x1heor9g x1sur9pj xkrqix3"
-    //         ) {
-    //           tmp.id = attributes.href.split("=")[1];
-    //           tmp.link = attributes.href;
-    //           start = 1;
-    //         }
-    //       },
-    //       ontext(text) {
-    //         if (start) {
-    //           tmp.name = text;
-    //           classList.push(tmp);
-    //           tmp = {};
-    //           start = 0;
-    //         }
-    //       },
-    //       onclosetag(tagname) {},
-    //     });
-    //     parser.write(html);
-    //     parser.end();
-    //     return classList;
-    //   }
-    //   const ids = extractClassList(html.value);
-    //   data.value = ids;
-    //   console.log(ids, "ids");
-    // };
 
     const html2 = ref("");
     const data2 = ref("");
@@ -233,16 +197,20 @@ export default {
         parser.write(html);
         parser.end();
         content.split("\n").forEach((val, index) => {
-          console.log(val, index, "11111");
+          if (!val) {
+            return;
+          }
           console.log(index % 2, "index % 2");
           if (index % 2 === 0) {
             tmp = val;
+            console.log(index, "index");
           } else {
             const id = val.split("：")[1];
-            tmp2 += `${id}|${tmp}\n`;
+            console.log(val.split("："), "22222");
+            tmp2 += `${tmp}  ${id}\n`;
           }
         });
-        return tmp2;
+        return content;
       }
       const content = extractClassList(html2.value);
       data2.value = content;
