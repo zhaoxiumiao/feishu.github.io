@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/insert.vue"), //.vue不能省略
   },
   {
-    path: "/phonetic_symbols",
+    path: "/phonetic_symbols.vue",
     name: "phonetic_symbols",
     component: () => import("@/views/phonetic_symbols.vue"), //.vue不能省略
   },

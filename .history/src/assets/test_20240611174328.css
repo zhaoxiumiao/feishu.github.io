@@ -1,0 +1,18 @@
+.col-md-10 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-md-10 {
+  -webkit-box-flex: 0;
+  flex: 0 0 83.33333%;
+  max-width: 83.33333%;
+}
+
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
+}
