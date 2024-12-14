@@ -44,13 +44,13 @@ const insertU = async (list) => {
     const fieldMetaList = [
       "fldEXlTkOf", // accId
       "fldzzeTnMW", // accName
-      "fldHTPkvxt", // accTimezone
     ];
     const insertList = list.map((item) => {
       return {
         fields: {
           [fieldMetaList[0]]: [{ type: "text", text: item.id }],
           [fieldMetaList[1]]: [{ type: "text", text: item.name }],
+          [fieldMetaList[1]]: [{ type: "SingleSelect", text: item.timezone }],
         },
       };
     });

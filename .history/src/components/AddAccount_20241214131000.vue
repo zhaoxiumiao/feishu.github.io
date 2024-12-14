@@ -44,7 +44,6 @@ const insertU = async (list) => {
     const fieldMetaList = [
       "fldEXlTkOf", // accId
       "fldzzeTnMW", // accName
-      "fldHTPkvxt", // accTimezone
     ];
     const insertList = list.map((item) => {
       return {
