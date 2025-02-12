@@ -11,22 +11,41 @@ const sub = () => {
   const accListObj = [];
   let star = 0;
   let tmp = {};
+  // accList.value.split("\n").forEach((item, index) => {
+  //   if (index === star) {
+  //     tmp.name = item;
+  //   }
+  //   if (index === star + 1) {
+  //     tmp.id = item;
+  //   }
+  //   if (index === star + 2) {
+  //     const timezone = item.split("：")[1];
+  //     tmp.timezone = timezone;
+  //   }
+  //   if (index === star + 3) {
+  //     accListObj.push(tmp);
+  //     tmp = {};
+  //     star = index + 1;
+  //   }
+  // });
+  // accList.value.split("\n").forEach((item, index) => {
+  //   const arr = item.split(" ");
+  //   tmp.id = arr[arr.length - 2];
+  //   tmp.name = arr.slice(0, arr.length - 2).join(" ");
+  //   accListObj.push(tmp);
+  //   tmp = {};
+  // });
+  const reg = /\([0-9]+\)/g;
   accList.value.split("\n").forEach((item, index) => {
-    if (index === star) {
-      tmp.name = item;
+    const arr = item.split(" ");
+    if (item.includes("新增账户：")) {
+      const strv = item.split("：")[1];
+      const idk = strv.match(reg)[0];
     }
-    if (index === star + 1) {
-      tmp.id = item;
-    }
-    if (index === star + 2) {
-      const timezone = item.split("：")[1];
-      tmp.timezone = timezone;
-    }
-    if (index === star + 3) {
-      accListObj.push(tmp);
-      tmp = {};
-      star = index + 1;
-    }
+    tmp.id = arr[arr.length - 2];
+    tmp.name = arr.slice(0, arr.length - 2).join(" ");
+    accListObj.push(tmp);
+    tmp = {};
   });
   console.log(accListObj);
   if (accListObj.length === 0) {
@@ -44,13 +63,13 @@ const insertU = async (list) => {
     const fieldMetaList = [
       "fldEXlTkOf", // accId
       "fldzzeTnMW", // accName
+      "fldHTPkvxt", // accTimezone
     ];
     const insertList = list.map((item) => {
       return {
         fields: {
           [fieldMetaList[0]]: [{ type: "text", text: item.id }],
           [fieldMetaList[1]]: [{ type: "text", text: item.name }],
-          [fieldMetaList[1]]: [{ type: "SingleSelect", text: item.timezone }],
         },
       };
     });
