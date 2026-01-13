@@ -41,4 +41,7 @@ declare module 'vue' {
     Test: typeof import('./src/components/Grid/test.vue')['default']
     TwoFA: typeof import('./src/components/TwoFA.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }
