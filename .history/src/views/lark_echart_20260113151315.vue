@@ -258,19 +258,12 @@ const renderChart = (treeData) => {
       {
         type: "tree",
         data: [treeData],
-        // --- 关键修改 1: 减少边距，让图撑得更满 ---
-        top: "1%", // 以前可能是 10%
+        top: "1%",
+        left: "10%", // 稍微增加左边距，防止根节点文字被遮挡
         bottom: "1%",
-        left: "5%", // 左边留一点给根节点
-        right: "20%", // 右边留给文字
-        // -------------------------------------
-
-        // --- 关键修改 2: 开启缩放和平移 ---
-        roam: true,
-        // --------------------------------
+        right: "20%",
         symbol: "emptyCircle",
         expandAndCollapse: true,
-        // 默认展开几层
         initialTreeDepth: 2,
 
         // 全局 Label (适用于 BM 节点)

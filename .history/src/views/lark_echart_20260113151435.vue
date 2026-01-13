@@ -270,7 +270,6 @@ const renderChart = (treeData) => {
         // --------------------------------
         symbol: "emptyCircle",
         expandAndCollapse: true,
-        // 默认展开几层
         initialTreeDepth: 2,
 
         // 全局 Label (适用于 BM 节点)
