@@ -35,5 +35,10 @@ const routes: RouteRecordRaw[] = [
     name: "lark_echart",
     component: () => import("@/views/lark_echart.vue"), //.vue不能省略
   },
+  {
+    path: "/testDeep",
+    name: "testDeep",
+    component: () => import("@/views/testDeep.vue"), //.vue不能省略
+  },
 ];
 export default routes;
